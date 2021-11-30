@@ -1,6 +1,8 @@
-<?php
-  
+<?php 
+    session_start();
+?>
 
+<?php
   include 'dbconn.php';
   if(isset($_REQUEST['submit']))
   {
@@ -13,10 +15,20 @@
       {
           $email_pass = mysqli_fetch_assoc($query);
           $db_pass = $email_pass['password'];
+         
+          $_SESSION['username'] = $email_pass['username'];
+          $_SESSION['email'] = $email_pass['email'];
+          $_SESSION['phone'] = $email_pass['phone'];
           $pass_decode = password_verify($password, $db_pass);
           if($pass_decode)
           {
               echo "Login successful";
+              ?>
+                <script>
+                    location.replace("home.php");
+                </script>
+
+              <?php
           }
           else{
               echo "Password incorrect";

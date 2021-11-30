@@ -45,7 +45,7 @@
                 }
             }
             else{
-                echo "pasword are not matching";
+                echo "password are not matching";
             }
         }
     }
